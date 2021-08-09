@@ -72,7 +72,7 @@ pmram = api.item.create (
 mmram = api.item.create (
     {
         "name": "Média de memória utilizada",
-        "key_": "vm.memory.[pused]",
+        "key_": "vm.memory.size[pused]",
         "hostid": "10416",
         "type": 0,
         "interfaceid": "2",
