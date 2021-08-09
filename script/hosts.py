@@ -49,7 +49,7 @@ qmram = api.item.create (
         "value_type": 3,
         "units": "M",
         "delay": "1m",
-        "description": "",   
+        "description": "Este item mede a quantidade de memória disponível",   
     }
 )
 
@@ -64,7 +64,7 @@ pmram = api.item.create (
         "value_type": 3,
         "units": "%",
         "delay": "1m",
-        "description": "",   
+        "description": "Este item mede o Percentual de memória disponível",   
     }
 )
 
@@ -79,7 +79,7 @@ mmram = api.item.create (
         "value_type": 0,
         "units": "%",
         "delay": "1m",
-        "description": "",   
+        "description": "Este item mede a Média de memória utilizada",   
     }
 )
 
@@ -97,7 +97,7 @@ qtddisk = api.item.create (
         "units": "G",
         "interfaceid": "2",
         "delay": "1m",
-        "description": "",
+        "description": "Este item mede a quantidade de volume disponível em disco",
     }
 )
 
@@ -130,7 +130,7 @@ qtdmemzb = api.item.create (
         "units": "M",
         "interfaceid": "2",
         "delay": "1m",
-        "description": "",
+        "description": "Este item mede a quantidade de memória utilizada pelo serviço do zabbix",
     }
 )
 
@@ -146,7 +146,7 @@ qtdmemapi = api.item.create (
         "units": "M",
         "interfaceid": "2",
         "delay": "1m",
-        "description": "",
+        "description": "Este item mede a quantidade de memória utilizada pelo serviço da API",
     }
 
 )
@@ -164,7 +164,7 @@ qtdcpu = api.item.create (
         "value_type": 0,
         "units": "%",
         "delay": "1m",
-        "description": "",   
+        "description": "Este item mede a quantidade de CPU em uso",   
     }
 )
 
@@ -180,7 +180,7 @@ timeapi = api.item.create (
         "units": "s",
         "interfaceid": "2",
         "delay": "1m",
-        "description": "",
+        "description": "Este item mede a Média do tempo de resposta da API",
     }
 )
 
