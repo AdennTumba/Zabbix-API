@@ -1,0 +1,4 @@
+---
+# handlers file for zabbix
+- name: restart mysql  
+  systemd: state=restarted enabled=yes daemon_reload=yes name=mysql

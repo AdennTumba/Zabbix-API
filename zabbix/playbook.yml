@@ -1,0 +1,7 @@
+---
+- name: Starting Deploy of Zabbix
+  hosts: all
+  gather_facts: yes
+  become: true
+  roles:
+    - zabbix

@@ -1,0 +1,88 @@
+---
+# Instalando o mysql-server
+- name: Instalando o mysql-server
+  apt:
+    name: "{{ mysql }}"
+    state: latest
+    update_cache: yes
+
+# Reinicia o Mysql    
+- name: Reiniciando o Mysql
+  ansible.builtin.systemd:
+    state: restarted 
+    enabled: yes 
+    daemon_reload: yes 
+    name: mysql
+
+# Define a senha do Root
+- name: Definindo a senha do root 
+  mysql_user: 
+    name: root 
+    password: "{{ mysql_root_password }}"
+    state: 'present'
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+  ignore_errors: true  
+
+# Remove todas as contas de usuário anônimo
+- name: Removendo todas as contas de usuário anônimo
+  mysql_user:
+    name: ''
+    host_all: yes
+    state: absent
+    login_user: root
+    login_password: "{{ mysql_root_password }}"
+
+# Remove banco de dados teste 
+- name: Removendo banco de dados teste 
+  mysql_db: 
+    name: test 
+    state: absent
+    login_user: root
+    login_password: "{{ mysql_root_password }}"
+
+# Criar banco de dados inicial
+- name: Criando um novo banco de dados com o nome 'zabbix'
+  mysql_db:
+    name: "{{ mysql_db }}"
+    state: present
+    encoding: utf8
+    collation: utf8_bin
+    login_user: root
+    login_password: "{{ mysql_root_password }}"
+
+# Criar um usuário banco de dados zabbix
+- name: Criando usuario para o Banco de dados
+  mysql_user:
+    name: "{{ mysql_user }}"
+    password: "{{ mysql_password }}"
+    login_host: localhost
+    priv: '*.*:ALL,GRANT'
+    login_user: root
+    login_password: "{{ mysql_root_password }}"
+
+# Criar banco de dados inicial
+- name: Criando um novo banco de dados com o nome 'zabbix'
+  mysql_db:
+    name: "{{ mysql_db }}"
+    state: present
+    encoding: utf8
+    collation: utf8_bin
+    login_user: root
+    login_password: "{{ mysql_root_password }}"
+
+# Criar um usuário banco de dados zabbix
+- name: Criando usuario para o Banco de dados
+  mysql_user:
+    name: "{{ mysql_user }}"
+    password: "{{ mysql_password }}"
+    priv: '*.*:ALL,GRANT'
+    login_user: root
+    login_password: "{{ mysql_root_password }}"
+
+# Reinicia o Mysql    
+- name: Reiniciando o Mysql
+  ansible.builtin.systemd:
+    state: restarted 
+    enabled: yes 
+    daemon_reload: yes 
+    name: mysql

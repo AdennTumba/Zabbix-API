@@ -1,0 +1,24 @@
+---
+# Instala o Nginx
+- name: Instalando o nginx 
+  apt:
+    name: "{{ nginx }}"
+    state: latest
+    update_cache: yes
+
+# Instala as depencicas Python
+- name: Instalando depencicas Python
+  apt:
+    name: "{{ python }}"
+    state: latest
+
+  # Instala as depencicas Python
+- name: Instalando depencicas Python 2
+  pip:
+    name: "{{ python2 }}"
+    state: latest
+
+# Instala o community.zabbix.zabbix_action
+- name: Instalando o Zabbix-Api
+  shell: pip install zabbix-api
+

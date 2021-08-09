@@ -1,0 +1,7 @@
+---
+- name: Starting Deploy of Server Nginx 
+  hosts: all
+  gather_facts: yes
+  become: true
+  roles:
+    - nginx

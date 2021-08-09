@@ -1,0 +1,32 @@
+---
+# Atualiza todos os pacotes do sistema Operacional
+- name: Instalando e atualizando todos os pacotes nginx 
+  apt:
+    name: "{{ lemp }}"
+    state: latest
+    update_cache: yes
+
+# Copia os arquivos de configuração para o servidor remoto
+- name: Copiando o arquivo de configuração do nginx e restarta o nginx
+  copy:
+    src: "{{ role_path }}/files/static_site.cfg"
+    dest: /etc/nginx/sites-available/static_site.cfg
+    remote_src: yes
+
+# Cria um link Simbólico 
+- name: Criando o link simbólico
+  file:
+    src: /etc/nginx/sites-available/static_site.cfg
+    dest: /etc/nginx/sites-enabled/default
+    state: link
+  notify: Restart nginx
+
+# Copia os arquivos estáticos so site
+- name: Copiando os arquivos estaticos do site
+  copy:
+    src: "{{ role_path }}/files/{{ item }}"
+    dest: /usr/share/nginx/html
+    remote_src: yes
+  with_items:
+    - index.php
+    - apicep.php  

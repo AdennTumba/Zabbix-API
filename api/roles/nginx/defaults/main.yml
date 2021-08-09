@@ -1,0 +1,14 @@
+
+lemp:
+  - nginx
+  - mysql-server
+  - python3-pymysql
+  - php-fpm
+  - php-mysql
+  - php-xml
+  - php-soap
+  - php-xmlrpc
+  - php-mbstring
+  - php-json
+  - php-gd
+

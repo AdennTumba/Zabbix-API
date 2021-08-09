@@ -1,0 +1,12 @@
+---
+- name: Create zabbix user group
+  ansible.builtin.group:
+    name: zabbix 
+    state: present
+
+- name: Create zabbix user
+  ansible.builtin.user: 
+    name: zabbix
+    shell: /bin/bash
+    groups: zabbix,adm  
+    append: yes   

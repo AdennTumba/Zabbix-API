@@ -1,0 +1,51 @@
+---
+# defaults file for zabbix
+
+nginx:
+  - nginx
+  
+python:
+  - python3
+  - python3-pip
+  - python3-pymysql
+  - python-apt
+  - python3-apt
+  - ca-certificates
+  - git
+  - curl
+
+python2:
+  - netaddr
+  - zabbix-api
+  - pyzabbix
+
+
+zabbix:
+  - zabbix-server-mysql
+  - zabbix-frontend-php
+  - zabbix-nginx-conf
+  - zabbix-agent
+
+mysql:
+  - mysql-server
+
+# Variaveis DB Mysql
+mysql_db: zabbix
+mysql_user: zabbix
+mysql_password: zabbix
+mysql_root_password: zabbix
+mysql_old_root_password: zabbix
+
+# Variaveis Host
+zabbix_server: 10.10.10.12
+user: Admin
+pass: zabbix
+template1: Template App Zabbix Agent
+template2: Template OS Linux
+template3: Template OS Linux SNMPv2
+srv_linux: Linux servers
+descricao: Servidores da v4 do zabbix
+comunidade: hulk
+# Nome dos servidores (esta lista é a que será enviada para o servidor de zabbix)
+host_add:
+- { name: 'api',hostname: 'api.lab.zabbix.com',ip: '10.10.10.11' }

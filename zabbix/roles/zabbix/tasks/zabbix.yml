@@ -1,0 +1,53 @@
+---
+# Instalando o repositório Zabbix .deb
+- name: Instalando o repositório Zabbix
+  apt:
+    deb: https://repo.zabbix.com/zabbix/5.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_5.0-1+focal_all.deb
+
+# Instalando o repositório Zabbix
+- name: Instalando o servidor, o frontend e o agente Zabbix
+  apt:
+    name: "{{ zabbix }}"
+    state: latest
+    update_cache: yes
+
+
+# importe o esquema inicial e os dados
+- name: Importando o esquema inicial e os dados
+  shell: "zcat /usr/share/doc/zabbix-server-mysql*/create.sql.gz | mysql -uzabbix -p{{ mysql_password }} zabbix"
+
+# Copia o arquivos de configuração para o banco de dados
+- name: Copiando arquivos de configuração para o banco de dados
+  copy:
+    src: "{{ role_path }}/files/zabbix_server.conf"
+    dest: /etc/zabbix/zabbix_server.conf
+    remote_src: yes
+
+# Copia o arquivos de configuração PHP que defina o fuso horário correto
+- name: Copiando arquivos de configuração PHP que defina o fuso horário correto
+  copy:
+    src: "{{ role_path }}/files/nginx.conf"
+    dest: /etc/zabbix/nginx.conf
+    remote_src: yes
+
+# Copia o arquivos de configuração PHP para o frontend Zabbix
+- name: Copiando arquivos de configuração PHP para o frontend Zabbix
+  copy:
+    src: "{{ role_path }}/files/php-fpm.conf"
+    dest: /etc/zabbix/php-fpm.conf
+    remote_src: yes
+
+# Copia o arquivos de configuração zabbix para o frontend Zabbix
+- name: Copiando arquivos de configuração zabbix para o frontend Zabbix
+  copy:
+    src: "{{ role_path }}/files/zabbix.conf.php"
+    dest: /usr/share/zabbix/conf/zabbix.conf.php
+    remote_src: yes
+
+# Inicia o servidor Zabbix e os processos do agente
+- name: Iniciando o servidor Zabbix e os processos do agente
+  shell: systemctl enable zabbix-server zabbix-agent nginx php7.4-fpm
+ 
+# Inicia o servidor Zabbix e os processos do agente
+- name: Iniciando o servidor Zabbix e os processos do agente
+  shell: systemctl restart zabbix-server zabbix-agent nginx php7.4-fpm 

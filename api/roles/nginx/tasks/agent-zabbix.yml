@@ -1,0 +1,16 @@
+---
+# Instala o Agent o do Zabbix
+- name: Instalando o Agent zabbix-agent 
+  apt:
+    name: zabbix-agent
+
+# Copia o arquivo de configuração do agent zabbix
+- name: Copiando os arquivos estaticos do site
+  copy:
+    src: "{{ role_path }}/files/zabbix_agentd.conf"
+    dest: /etc/zabbix/zabbix_agentd.conf
+    remote_src: yes
+
+# Inicia o restart do agent Zabbix 
+- name: Restarta o Agent Zabbix
+  shell: systemctl restart zabbix-agent

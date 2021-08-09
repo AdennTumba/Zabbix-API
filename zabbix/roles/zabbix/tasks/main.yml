@@ -1,0 +1,13 @@
+---
+# tasks file for zabbix
+- name: Include User
+  include: user.yml
+
+- name: Include Nginx
+  include: nginx.yml
+
+- name: Include Mysql
+  include: mysql.yml
+  
+- name: Include Zabbix
+  include: zabbix.yml

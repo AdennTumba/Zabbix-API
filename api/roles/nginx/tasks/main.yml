@@ -1,0 +1,6 @@
+---
+- name: Include nginx
+  include: nginx.yml
+
+- name: Include agent-zabbix
+  include: agent-zabbix.yml  
