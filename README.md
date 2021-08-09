@@ -27,6 +27,18 @@ Como usar
 vagrant up
 </pre>
 
+Setup 
+------------
+<pre>
+VM - Server1 (Servidor da API)
+  - IP: 10.10.10.11
+-------------------------------  
+VM - Server2 (Servidor ZAbbix)
+  - IP: 10.10.10.12
+    * User: Admin
+    * Password: zabbix
+</pre>
+
 Comandos Essenciais 
 ------------
 <pre>
