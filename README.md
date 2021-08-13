@@ -15,7 +15,7 @@ Siga o passo a passo: https://www.virtualbox.org/wiki/Linux_Downloads
 apt get install vagrant
 
 <b>Clona o projeto</b>
-git clone https://github.com/viniciustbitencourt/crud-apizabbix.git
+git clone https://github.com/AdennTumba/Zabbix-API
 </pre>
 
 Como usar
